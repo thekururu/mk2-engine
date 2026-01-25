@@ -1,12 +1,15 @@
 // main.js
 
-// Escena y renderer
+// Escena
 import "./engine/scene/scene.js";
 
-// Controles con mouse
-import "./engine/controls/controls.js";
+// Controles
+import { initControls } from "./engine/controls/controls.js";
 
-// UI del editor
+// UI
 import "./ui/ui.js";
 
-console.log("🚀 Mini 3D Engine iniciado");
+// Inicializar controles
+initControls();
+
+console.log("🚀 Mini 3D Engine iniciado correctamente");
