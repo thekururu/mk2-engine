@@ -2,31 +2,61 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>KukU engine games</title>
+  <title>MK2 KukU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./style.css" />
+
+  <!-- IMPORT MAP (ESTO ES LA CLAVE) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+      font-family: Arial, sans-serif;
+    }
+
+    #ui {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.7);
+      padding: 10px;
+      border-radius: 8px;
+      color: white;
+      z-index: 10;
+    }
+
+    #ui button,
+    #ui input {
+      display: block;
+      margin-bottom: 6px;
+      width: 160px;
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- UI -->
   <div id="ui">
     <button id="addCube">➕ Crear Cubo</button>
-
     <input type="file" id="textureInput" />
     <button id="applyTexture">🎨 Aplicar Textura</button>
-
     <input type="file" id="modelInput" />
-
     <input type="file" id="soundInput" />
     <button id="playSound">🔊 Reproducir Sonido</button>
-
     <button id="fullscreen">🖥 Pantalla Completa</button>
     <button id="export">💾 Exportar Escena</button>
     <button id="screenshot">📸 Screenshot</button>
   </div>
 
-  <!-- SOLO UN SCRIPT -->
   <script type="module" src="./main.js"></script>
-
 </body>
 </html>
