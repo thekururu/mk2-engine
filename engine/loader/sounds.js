@@ -11,18 +11,17 @@ export function loadSound(file, name, loop = false, volume = 1) {
 }
 
 export function playSound(name) {
-  const sound = sounds[name];
-  if (!sound) {
-    alert("Sonido no encontrado: " + name);
+  if (!sounds[name]) {
+    console.warn("Sonido no encontrado:", name);
     return;
   }
-  sound.currentTime = 0;
-  sound.play();
+  sounds[name].currentTime = 0;
+  sounds[name].play();
 }
 
 export function stopSound(name) {
-  const sound = sounds[name];
-  if (sound) sound.pause();
+  if (!sounds[name]) return;
+  sounds[name].pause();
 }
 
 export function getSoundNames() {
