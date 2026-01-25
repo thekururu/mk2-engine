@@ -19,6 +19,8 @@ export function initControls() {
   renderer.domElement.addEventListener("mousedown", onMouseDown);
   renderer.domElement.addEventListener("mousemove", onMouseMove);
   renderer.domElement.addEventListener("mouseup", onMouseUp);
+
+  console.log("🕹 Controles inicializados");
 }
 
 // ==========================
@@ -30,23 +32,24 @@ function onMouseDown(event) {
 
   raycaster.setFromCamera(mouse, camera);
 
-  const intersects = raycaster.intersectObjects(scene.children, true);
+  // 🔥 SOLO MESHES
+  const meshes = scene.children.filter(o => o.isMesh);
+  const intersects = raycaster.intersectObjects(meshes, true);
 
-  if (intersects.length > 0) {
-    selectedObject = intersects[0].object;
+  if (intersects.length === 0) return;
 
-    // plano de arrastre
-    dragPlane.setFromNormalAndCoplanarPoint(
-      camera.getWorldDirection(dragPlane.normal),
-      selectedObject.position
-    );
+  selectedObject = intersects[0].object;
 
-    const intersectPoint = new THREE.Vector3();
-    raycaster.ray.intersectPlane(dragPlane, intersectPoint);
-    dragOffset.copy(intersectPoint).sub(selectedObject.position);
+  dragPlane.setFromNormalAndCoplanarPoint(
+    camera.getWorldDirection(dragPlane.normal),
+    selectedObject.position
+  );
 
-    isDragging = true;
-  }
+  const intersectPoint = new THREE.Vector3();
+  raycaster.ray.intersectPlane(dragPlane, intersectPoint);
+  dragOffset.copy(intersectPoint).sub(selectedObject.position);
+
+  isDragging = true;
 }
 
 // ==========================
