@@ -2,45 +2,58 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Mini 3D Engine</title>
-  <link rel="stylesheet" href="./style.css" />
+  <title>MK2 Mini 3D Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+      font-family: Arial, sans-serif;
+    }
+
+    #ui {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+      border-radius: 8px;
+      color: white;
+      z-index: 10;
+    }
+
+    #ui button,
+    #ui input {
+      display: block;
+      margin-bottom: 6px;
+      width: 160px;
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- CANVAS 3D -->
-  <canvas id="viewport"></canvas>
-
-  <!-- UI DEL EDITOR -->
-  <div id="editor-ui">
-    <h3>Mini 3D Engine</h3>
-
+  <!-- UI -->
+  <div id="ui">
     <button id="addCube">➕ Crear Cubo</button>
 
-    <hr />
-
-    <label>Texturas (.png)</label>
     <input type="file" id="textureInput" accept="image/png" />
-    <button id="applyTexture">🎨 Aplicar textura</button>
+    <button id="applyTexture">🎨 Aplicar Textura</button>
 
-    <hr />
+    <input type="file" id="modelInput" accept=".gltf,.glb" />
 
-    <label>Modelos</label>
-    <input type="file" id="modelInput" />
+    <input type="file" id="soundInput" accept="audio/*" />
+    <button id="playSound">🔊 Reproducir Sonido</button>
 
-    <hr />
-
-    <label>Sonidos</label>
-    <input type="file" id="soundInput" />
-    <button id="playSound">🔊 Play sound</button>
-
-    <hr />
-
-    <button id="fullscreen">🖥 Pantalla completa</button>
-    <button id="export">💾 Exportar escena</button>
+    <button id="fullscreen">🖥 Pantalla Completa</button>
+    <button id="export">💾 Exportar Escena</button>
     <button id="screenshot">📸 Screenshot</button>
   </div>
 
-  <!-- BOOTSTRAP -->
+  <!-- SOLO ESTE SCRIPT -->
   <script type="module" src="./main.js"></script>
+
 </body>
 </html>
