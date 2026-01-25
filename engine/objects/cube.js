@@ -1,4 +1,5 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+import { scene } from "../scene/scene.js";
 
 export function createCube() {
   const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -12,7 +13,6 @@ export function createCube() {
   );
 
   scene.add(cube);
-
   console.log("🧊 Cubo creado");
   return cube;
 }
