@@ -1,27 +1,34 @@
-import THREE from "../three.js";
-import { camera, scene, renderer } from "../scene/scene.js";
+import * as THREE from "../three.js";
+import { scene, camera, renderer } from "../scene/scene.js";
+
+export let selectedObject = null;
 
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
-let selected = null;
 
 export function initControls() {
-  renderer.domElement.addEventListener("mousedown", e => {
-    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-
-    raycaster.setFromCamera(mouse, camera);
-    const hits = raycaster.intersectObjects(scene.children);
-
-    if (hits.length) selected = hits[0].object;
-  });
-
-  renderer.domElement.addEventListener("mousemove", () => {
-    if (selected) selected.rotation.y += 0.03;
-  });
-
-  renderer.domElement.addEventListener("mouseup", () => {
-    selected = null;
-  });
+  renderer.domElement.addEventListener("mousedown", onMouseDown);
 }
 
+function onMouseDown(event) {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+  const hits = raycaster.intersectObjects(scene.children);
+
+  if (hits.length > 0) {
+    selectObject(hits[0].object);
+  }
+}
+
+function selectObject(obj) {
+  if (selectedObject) {
+    selectedObject.material.emissive?.set(0x000000);
+  }
+
+  selectedObject = obj;
+  selectedObject.material.emissive = new THREE.Color(0x00ff00);
+
+  console.log("🎯 Seleccionado:", selectedObject);
+}
