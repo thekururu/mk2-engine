@@ -1,1 +1,21 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #111;
+}
+
+#ui {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #222;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+button {
+  width: 140px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
 
