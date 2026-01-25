@@ -1,34 +1,17 @@
-import * as THREE from "../three.js";
-import { scene, camera, renderer } from "../scene/scene.js";
+import { THREE } from "../three.js";
+import { scene } from "../scene/scene.js";
 
-export let selectedObject = null;
+export function createCube() {
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+  const material = new THREE.MeshStandardMaterial({ color: 0x00ffcc });
+  const cube = new THREE.Mesh(geometry, material);
 
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
+  cube.position.set(
+    Math.random() * 2 - 1,
+    Math.random() * 2 - 1,
+    0
+  );
 
-export function initControls() {
-  renderer.domElement.addEventListener("mousedown", onMouseDown);
-}
-
-function onMouseDown(event) {
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-  raycaster.setFromCamera(mouse, camera);
-  const hits = raycaster.intersectObjects(scene.children);
-
-  if (hits.length > 0) {
-    selectObject(hits[0].object);
-  }
-}
-
-function selectObject(obj) {
-  if (selectedObject) {
-    selectedObject.material.emissive?.set(0x000000);
-  }
-
-  selectedObject = obj;
-  selectedObject.material.emissive = new THREE.Color(0x00ff00);
-
-  console.log("🎯 Seleccionado:", selectedObject);
+  scene.add(cube);
+  console.log("🧊 Cubo creado");
 }
