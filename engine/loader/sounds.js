@@ -1,25 +1,30 @@
-import {
-  loadSound,
-  playSound,
-  stopSound,
-  getSoundNames
-} from "./engine/loader/sounds.js";
+// engine/loader/sounds.js
 
-// SUBIR SONIDO
-document.getElementById("soundInput").addEventListener("change", e => {
-  const file = e.target.files[0];
-  if (!file) return;
+const sounds = {};
 
-  const name = prompt("Nombre del sonido:");
-  if (!name) return;
+export function loadSound(file, name, loop = false, volume = 1) {
+  const url = URL.createObjectURL(file);
+  const audio = new Audio(url);
+  audio.loop = loop;
+  audio.volume = volume;
+  sounds[name] = audio;
+}
 
-  loadSound(file, name, true, 0.5);
-});
+export function playSound(name) {
+  const sound = sounds[name];
+  if (!sound) {
+    alert("Sonido no encontrado: " + name);
+    return;
+  }
+  sound.currentTime = 0;
+  sound.play();
+}
 
-// REPRODUCIR
-document.getElementById("playSound").onclick = () => {
-  const name = prompt(
-    "Sonidos disponibles:\n" + getSoundNames().join("\n")
-  );
-  playSound(name);
-};
+export function stopSound(name) {
+  const sound = sounds[name];
+  if (sound) sound.pause();
+}
+
+export function getSoundNames() {
+  return Object.keys(sounds);
+}
