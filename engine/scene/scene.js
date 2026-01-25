@@ -1,5 +1,5 @@
 // engine/scene/scene.js
-import * as THREE from "https://unpkg.com/three@0.158.0/build/three.module.js";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 
 export const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x111111);
@@ -10,7 +10,7 @@ export const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.z = 5;
+camera.position.set(0, 0, 5);
 
 export const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -21,9 +21,9 @@ const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(5, 5, 5);
 scene.add(light);
 
-// Objetos
-const objects = [];
-
+// ==========================
+// CREAR CUBO
+// ==========================
 export function createCube() {
   const geo = new THREE.BoxGeometry();
   const mat = new THREE.MeshStandardMaterial({ color: 0x00ffcc });
@@ -33,12 +33,12 @@ export function createCube() {
   cube.position.y = Math.random() * 2 - 1;
 
   scene.add(cube);
-  objects.push(cube);
-
   console.log("🧊 Cubo creado");
 }
 
-// Loop
+// ==========================
+// LOOP
+// ==========================
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
