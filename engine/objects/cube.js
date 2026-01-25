@@ -1,6 +1,4 @@
-// engine/objects/cube.js
-import * as THREE from "../three.js";
-import { scene } from "../scene/scene.js";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 
 export function createCube() {
   const geometry = new THREE.BoxGeometry(1, 1, 1);
