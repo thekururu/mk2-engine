@@ -1,12 +1,11 @@
+// engine/objects/cube.js
 import * as THREE from "../three.js";
 import { scene } from "../scene/scene.js";
 
-export const cubes = [];
-
 export function createCube() {
-  const geo = new THREE.BoxGeometry();
-  const mat = new THREE.MeshStandardMaterial({ color: 0x00ffcc });
-  const cube = new THREE.Mesh(geo, mat);
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+  const material = new THREE.MeshStandardMaterial({ color: 0x00ffcc });
+  const cube = new THREE.Mesh(geometry, material);
 
   cube.position.set(
     Math.random() * 2 - 1,
@@ -14,10 +13,8 @@ export function createCube() {
     0
   );
 
-  cube.userData.type = "cube";
-
   scene.add(cube);
-  cubes.push(cube);
 
-  console.log("🧊 Cubo creado", cube);
+  console.log("🧊 Cubo creado");
+  return cube;
 }
