@@ -1,18 +1,8 @@
-// engine/controls/controls.js
+// main.js
 
-import { createCube } from "../objects/cube.js";
+import "./engine/scene/scene.js";
+import { initControls } from "./engine/controls/controls.js";
 
-export function initControls() {
-  const btn = document.getElementById("createCube");
+initControls();
 
-  if (!btn) {
-    console.error("❌ Botón #createCube no encontrado");
-    return;
-  }
-
-  btn.addEventListener("click", () => {
-    createCube();
-  });
-
-  console.log("🎮 Controles iniciados");
-}
+console.log("🚀 Mini Engine iniciado");
