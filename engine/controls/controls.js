@@ -10,10 +10,9 @@ export function initControls() {
     return;
   }
 
-  btn.addEventListener("click", () => {
+  btn.onclick = () => {
     createCube();
-  });
+  };
 
   console.log("🎮 Controles iniciados");
 }
-
